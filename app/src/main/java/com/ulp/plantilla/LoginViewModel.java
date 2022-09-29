@@ -63,7 +63,6 @@ public class LoginViewModel extends AndroidViewModel {
         sm = (SensorManager) context.getSystemService(SENSOR_SERVICE);
         List<Sensor> lista = sm.getSensorList(Sensor.TYPE_ACCELEROMETER);
         if(lista.size() > 0) {
-            //Colocar listener al sensor
             sm.registerListener(leerSensor, lista.get(0), SensorManager.SENSOR_DELAY_GAME);
         }
     }
@@ -82,8 +81,6 @@ public class LoginViewModel extends AndroidViewModel {
 
         @Override
         public void onSensorChanged(SensorEvent sensorEvent) {
-            //Log.d("salida", sensorEvent.values[0] + " " + sensorEvent.values[1] + " " + sensorEvent.values[2]);
-
             varX = sensorEvent.values[0];
             varY = sensorEvent.values[1];
             varZ = sensorEvent.values[2];
@@ -109,26 +106,13 @@ public class LoginViewModel extends AndroidViewModel {
                 mShakeCount++;
 
                 if(mShakeCount > 1) {
-                    Intent i = new Intent(Intent.ACTION_CALL, Uri.parse("tel:2664551738"));
+                    Intent i = new Intent(Intent.ACTION_CALL, Uri.parse("tel:2664896870"));
                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(i);
 
                     mShakeCount = 0;
                 }
             }
-            /*
-            //Log.d("salida", sensorEvent.values[0] + " " + sensorEvent.values[1] + " " + sensorEvent.values[2]);
-            movX = sensorEvent.values[0];
-
-            Log.d("salida", movimiento+"");
-            if(movX > 20 || movX < -20) {
-                movimiento += movimiento + Math.abs(movX);
-            }
-
-            if(movimiento > 100) {
-                Toast.makeText(getApplicationContext(), "Shake", Toast.LENGTH_SHORT).show();
-                movimiento = 0;
-            }*/
         }
 
         @Override
