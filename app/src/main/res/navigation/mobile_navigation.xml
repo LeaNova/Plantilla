@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.ulp.plantilla.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_perfil"
+        android:name="com.ulp.plantilla.ui.perfil.PerfilFragment"
+        android:label="@string/menu_perfil"
+        tools:layout="@layout/fragment_perfil" />
+
+    <fragment
+        android:id="@+id/nav_inmueble"
+        android:name="com.ulp.plantilla.ui.inmuebles.InmuebleFragment"
+        android:label="@string/menu_inmueble"
+        tools:layout="@layout/fragment_inmueble" >
+        <action
+            android:id="@+id/action_nav_inmueble_to_inmuebleDetalleFragment"
+            app:destination="@id/inmuebleDetalleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/inmuebleDetalleFragment"
+        android:name="com.ulp.plantilla.ui.inmuebles.InmuebleDetalleFragment"
+        android:label="Inmueble"
+        tools:layout="@layout/fragment_inmueble_detalle" />
+
+    <fragment
+        android:id="@+id/nav_inquilino"
+        android:name="com.ulp.plantilla.ui.inquilinos.InquilinoFragment"
+        android:label="@string/menu_inquilino"
+        tools:layout="@layout/fragment_inquilino" >
+        <action
+            android:id="@+id/action_nav_inquilino_to_inquilinoDetalleFragment"
+            app:destination="@id/inquilinoDetalleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/inquilinoDetalleFragment"
+        android:name="com.ulp.plantilla.ui.inquilinos.InquilinoDetalleFragment"
+        android:label="Inquilino"
+        tools:layout="@layout/fragment_inquilino_detalle" />
+
+    <fragment
+        android:id="@+id/nav_contrato"
+        android:name="com.ulp.plantilla.ui.contratos.ContratoFragment"
+        android:label="@string/menu_contrato"
+        tools:layout="@layout/fragment_contrato" >
+        <action
+            android:id="@+id/action_nav_contrato_to_contratoDetalleFragment"
+            app:destination="@id/contratoDetalleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/contratoDetalleFragment"
+        android:name="com.ulp.plantilla.ui.contratos.ContratoDetalleFragment"
+        android:label="Contrato"
+        tools:layout="@layout/fragment_contrato_detalle" >
+        <action
+            android:id="@+id/action_contratoDetalleFragment_to_pagoFragment"
+            app:destination="@id/pagoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pagoFragment"
+        android:name="com.ulp.plantilla.ui.pagos.PagoFragment"
+        android:label="Detalle de Pagos"
+        tools:layout="@layout/fragment_pago" />
+    <fragment
+        android:id="@+id/nav_logout"
+        android:name="com.ulp.plantilla.ui.logout.LogoutFragment"
+        android:label="Log out"
+        tools:layout="@layout/fragment_logout" />
+</navigation>
