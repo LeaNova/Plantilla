@@ -1,26 +1,46 @@
 package com.ulp.plantilla.modelo;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.Objects;
 
 public class Contrato implements Serializable {
 
     private int idContrato;
     private String fechaInicio;
-    private String fechaFin;
-    private double montoAlquiler;
+    private String fechaFinal;
+    //private Date fechaInicio;
+    //private Date fechaFinal;
+    private double alquilerMensual;
+    private int inmuebleId;
+    private int inquilinoId;
+    private Inmueble propiedad;
     private Inquilino inquilino;
-    private Inmueble inmueble;
 
     public Contrato() {}
-    public Contrato(int idContrato, String fechaInicio, String fechaFin, double montoAlquiler, Inquilino inquilino, Inmueble inmueble) {
+
+    public Contrato(int idContrato, String fechaInicio, String fechaFinal, double alquilerMensual, int inmuebleId, int inquilinoId, Inmueble propiedad, Inquilino inquilino) {
         this.idContrato = idContrato;
         this.fechaInicio = fechaInicio;
-        this.fechaFin = fechaFin;
-        this.montoAlquiler = montoAlquiler;
+        this.fechaFinal = fechaFinal;
+        this.alquilerMensual = alquilerMensual;
+        this.inmuebleId = inmuebleId;
+        this.inquilinoId = inquilinoId;
+        this.propiedad = propiedad;
         this.inquilino = inquilino;
-        this.inmueble = inmueble;
     }
+
+    /*
+    public Contrato(int idContrato, Date fechaInicio, Date fechaFinal, double alquilerMensual, int inmuebleId, int inquilinoId) {
+        this.idContrato = idContrato;
+        this.fechaInicio = fechaInicio;
+        this.fechaFinal = fechaFinal;
+        this.alquilerMensual = alquilerMensual;
+        this.inmuebleId = inmuebleId;
+        this.inquilinoId = inquilinoId;
+    }
+    */
 
     public int getIdContrato() {
         return idContrato;
@@ -30,6 +50,7 @@ public class Contrato implements Serializable {
         this.idContrato = idContrato;
     }
 
+
     public String getFechaInicio() {
         return fechaInicio;
     }
@@ -38,22 +59,63 @@ public class Contrato implements Serializable {
         this.fechaInicio = fechaInicio;
     }
 
-    public String getFechaFin() {
-        return fechaFin;
+    public String getFechaFinal() {
+        return fechaFinal;
     }
 
-    public void setFechaFin(String fechaFin) {
-        this.fechaFin = fechaFin;
+    public void setFechaFinal(String fechaFin) {
+        this.fechaFinal = fechaFin;
     }
 
-    public double getMontoAlquiler() {
-        return montoAlquiler;
+    /*
+    public Date getFechaInicio() {
+        return fechaInicio;
     }
 
-    public void setMontoAlquiler(double montoAlquiler) {
-        this.montoAlquiler = montoAlquiler;
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
     }
 
+    public Date getFechaFinal() {
+        return fechaFinal;
+    }
+
+    public void setFechaFinal(Date fechaFin) {
+        this.fechaFinal = fechaFin;
+    }
+    */
+
+    public double getAlquilerMensual() {
+        return alquilerMensual;
+    }
+
+    public void setAlquilerMensual(double alquilerMensual) {
+        this.alquilerMensual = alquilerMensual;
+    }
+
+    public int getInmuebleId() {
+        return inmuebleId;
+    }
+
+    public void setInmuebleId(int inmuebleId) {
+        this.inmuebleId = inmuebleId;
+    }
+
+    public int getInquilinoId() {
+        return inquilinoId;
+    }
+
+    public void setInquilinoId(int inquilinoId) {
+        this.inquilinoId = inquilinoId;
+    }
+
+    public Inmueble getPropiedad() {
+        return propiedad;
+    }
+
+    public void setPropiedad(Inmueble propiedad) {
+        this.propiedad = propiedad;
+    }
 
     public Inquilino getInquilino() {
         return inquilino;
@@ -61,14 +123,6 @@ public class Contrato implements Serializable {
 
     public void setInquilino(Inquilino inquilino) {
         this.inquilino = inquilino;
-    }
-
-    public Inmueble getInmueble() {
-        return inmueble;
-    }
-
-    public void setInmueble(Inmueble inmueble) {
-        this.inmueble = inmueble;
     }
 
     @Override

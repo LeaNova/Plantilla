@@ -25,12 +25,20 @@
         <action
             android:id="@+id/action_nav_inmueble_to_inmuebleDetalleFragment"
             app:destination="@id/inmuebleDetalleFragment" />
+        <action
+            android:id="@+id/action_nav_inmueble_to_agregarInmuebleFragment"
+            app:destination="@id/agregarInmuebleFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/inmuebleDetalleFragment"
         android:name="com.ulp.plantilla.ui.inmuebles.InmuebleDetalleFragment"
         android:label="Inmueble"
-        tools:layout="@layout/fragment_inmueble_detalle" />
+        tools:layout="@layout/fragment_inmueble_detalle" >
+        <action
+            android:id="@+id/action_inmuebleDetalleFragment_to_agregarInmuebleFragment"
+            app:destination="@id/agregarInmuebleFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_inquilino"
@@ -41,6 +49,7 @@
             android:id="@+id/action_nav_inquilino_to_inquilinoDetalleFragment"
             app:destination="@id/inquilinoDetalleFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/inquilinoDetalleFragment"
         android:name="com.ulp.plantilla.ui.inquilinos.InquilinoDetalleFragment"
@@ -56,6 +65,7 @@
             android:id="@+id/action_nav_contrato_to_contratoDetalleFragment"
             app:destination="@id/contratoDetalleFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/contratoDetalleFragment"
         android:name="com.ulp.plantilla.ui.contratos.ContratoDetalleFragment"
@@ -65,6 +75,7 @@
             android:id="@+id/action_contratoDetalleFragment_to_pagoFragment"
             app:destination="@id/pagoFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/pagoFragment"
         android:name="com.ulp.plantilla.ui.pagos.PagoFragment"
@@ -75,4 +86,25 @@
         android:name="com.ulp.plantilla.ui.logout.LogoutFragment"
         android:label="Log out"
         tools:layout="@layout/fragment_logout" />
+    <fragment
+        android:id="@+id/agregarInmuebleFragment"
+        android:name="com.ulp.plantilla.ui.inmuebles.AgregarInmuebleFragment"
+        android:label="Inmueble"
+        tools:layout="@layout/fragment_agregar_inmueble" >
+        <action
+            android:id="@+id/action_agregarInmuebleFragment_to_coordenadasFragment"
+            app:destination="@id/coordenadasFragment" />
+        <action
+            android:id="@+id/action_agregarInmuebleFragment_to_nav_inmueble2"
+            app:destination="@id/nav_inmueble" />
+    </fragment>
+    <fragment
+        android:id="@+id/coordenadasFragment"
+        android:name="com.ulp.plantilla.ui.inmuebles.CoordenadasFragment"
+        android:label="fragment_coordenadas"
+        tools:layout="@layout/fragment_coordenadas" >
+        <action
+            android:id="@+id/action_coordenadasFragment_to_agregarInmuebleFragment"
+            app:destination="@id/agregarInmuebleFragment" />
+    </fragment>
 </navigation>

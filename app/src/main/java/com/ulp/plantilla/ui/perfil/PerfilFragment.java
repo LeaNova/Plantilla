@@ -6,24 +6,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.ulp.plantilla.R;
 import com.ulp.plantilla.databinding.FragmentPerfilBinding;
 import com.ulp.plantilla.modelo.Propietario;
-import com.ulp.plantilla.request.ApiClient;
 
 public class PerfilFragment extends Fragment {
     private FragmentPerfilBinding binding;
     private PerfilViewModel pvm;
-    private EditText etId, etDNI, etNombre, etApellido, etMail, etPassPerfil, etTelefono;
-    private int avatar;
+    private ImageView ivUserD;
+    private EditText etNombre, etApellido, etDNI, etMail, etTelefono;
     private Button btBoton;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -36,14 +36,16 @@ public class PerfilFragment extends Fragment {
         pvm.getMutablePropietario().observe(getViewLifecycleOwner(), new Observer<Propietario>() {
             @Override
             public void onChanged(Propietario p) {
-                etId.setText(p.getId()+"");
-                etDNI.setText(p.getDni()+"");
                 etNombre.setText(p.getNombre());
                 etApellido.setText(p.getApellido());
+                etDNI.setText(p.getDni()+"");
                 etMail.setText(p.getEmail());
-                etPassPerfil.setText(p.getContraseña());
                 etTelefono.setText(p.getTelefono());
-                avatar = p.getAvatar();
+
+                Glide.with(getContext())
+                        .load("http://192.168.0.17:5000/" + p.getFoto())
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .into(ivUserD);
             }
         });
         pvm.obtenerPropietario();
@@ -53,7 +55,6 @@ public class PerfilFragment extends Fragment {
                 etNombre.setEnabled(aBoolean);
                 etApellido.setEnabled(aBoolean);
                 etMail.setEnabled(aBoolean);
-                etPassPerfil.setEnabled(aBoolean);
                 etTelefono.setEnabled(aBoolean);
             }
         });
@@ -74,12 +75,11 @@ public class PerfilFragment extends Fragment {
     }
 
     private void inicializarVista(View view) {
-        etId = view.findViewById(R.id.etId);
-        etDNI = view.findViewById(R.id.etDNI);
+        ivUserD = view.findViewById(R.id.ivUserD);
         etNombre = view.findViewById(R.id.etNombre);
         etApellido = view.findViewById(R.id.etApellido);
+        etDNI = view.findViewById(R.id.etDNI);
         etMail = view.findViewById(R.id.etMail);
-        etPassPerfil = view.findViewById(R.id.etPassPerfil);
         etTelefono = view.findViewById(R.id.etTelefono);
         btBoton = view.findViewById(R.id.btBoton);
         btBoton.setText("Editar");
@@ -89,17 +89,13 @@ public class PerfilFragment extends Fragment {
             public void onClick(View view) {
                 String boton = btBoton.getText().toString();
 
-                //Armar Propietario;
-                int id = Integer.parseInt(etId.getText().toString());
-                long dni = Long.parseLong(etDNI.getText().toString());
                 String nombre = etNombre.getText().toString();
                 String apellido = etApellido.getText().toString();
-                String mail = etMail.getText().toString();
-                String pass = etPassPerfil.getText().toString();
+                String dni = etDNI.getText().toString();
                 String telefono = etTelefono.getText().toString();
+                String mail = etMail.getText().toString();
 
-                Propietario p = new Propietario(id, dni, nombre, apellido, mail, pass, telefono, avatar);
-                pvm.actualizar(boton, p);
+                pvm.actualizar(boton, nombre, apellido, dni, telefono, mail);
             }
         });
     }

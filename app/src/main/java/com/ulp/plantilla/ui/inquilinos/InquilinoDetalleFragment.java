@@ -19,7 +19,7 @@ import com.ulp.plantilla.modelo.Inquilino;
 
 public class InquilinoDetalleFragment extends Fragment {
     private InquilinoDetalleViewModel idViewM;
-    private TextView tvCodigoInquilino, tvInquilinoNombre, tvInquilinoApellido, tvInquilinoDNI, tvInquilinoMail, tvInquilinoTelefono, tvInquilinoGarante, tvInquilinoGaranteTelefono;
+    private TextView tvCodigoInquilino, tvInquilinoNombre, tvInquilinoApellido, tvInquilinoDNI, tvInquilinoMail, tvInquilinoTelefono;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -32,11 +32,9 @@ public class InquilinoDetalleFragment extends Fragment {
                 tvCodigoInquilino.setText(inquilino.getIdInquilino()+"");
                 tvInquilinoNombre.setText(inquilino.getNombre());
                 tvInquilinoApellido.setText(inquilino.getApellido());
-                tvInquilinoDNI.setText(inquilino.getDNI()+"");
+                tvInquilinoDNI.setText(inquilino.getDNI());
                 tvInquilinoMail.setText(inquilino.getEmail());
                 tvInquilinoTelefono.setText(inquilino.getTelefono());
-                tvInquilinoGarante.setText(inquilino.getNombreGarante());
-                tvInquilinoGaranteTelefono.setText(inquilino.getTelefonoGarante());
             }
         });
         idViewM.obtenerInquilino(getArguments());
@@ -53,7 +51,5 @@ public class InquilinoDetalleFragment extends Fragment {
         tvInquilinoDNI = view.findViewById(R.id.tvInquilinoDNI);
         tvInquilinoMail = view.findViewById(R.id.tvInquilinoMail);
         tvInquilinoTelefono = view.findViewById(R.id.tvInquilinoTelefono);
-        tvInquilinoGarante = view.findViewById(R.id.tvInquilinoGarante);
-        tvInquilinoGaranteTelefono = view.findViewById(R.id.tvInquilinoGatanteTelefono);
     }
 }

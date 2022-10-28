@@ -156,4 +156,14 @@
         android:text="Disponible"
         app:layout_constraintStart_toStartOf="@+id/tvPrecio_inmueble"
         app:layout_constraintTop_toBottomOf="@+id/tvPrecio_inmueble" />
+
+    <Button
+        android:id="@+id/btEditarInmuebleD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Editar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ivDetalle_inmueble"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTipo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

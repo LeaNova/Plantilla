@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.ulp.plantilla.R;
+import com.ulp.plantilla.modelo.Contrato;
 import com.ulp.plantilla.modelo.Inmueble;
 
 import java.util.List;
@@ -23,9 +24,17 @@ import java.util.List;
 public class ContratoAdapter extends RecyclerView.Adapter<ContratoAdapter.ViewHolder> {
     private Context context;
     private LayoutInflater layoutInflater;
-    private List<Inmueble> lista;
+    //private List<Inmueble> lista;
+    private List<Contrato> lista;
 
+    /*
     public ContratoAdapter(Context context, LayoutInflater layoutInflater, List<Inmueble> lista) {
+        this.context = context;
+        this.layoutInflater = layoutInflater;
+        this.lista = lista;
+    }*/
+
+    public ContratoAdapter(Context context, LayoutInflater layoutInflater, List<Contrato> lista) {
         this.context = context;
         this.layoutInflater = layoutInflater;
         this.lista = lista;
@@ -41,10 +50,11 @@ public class ContratoAdapter extends RecyclerView.Adapter<ContratoAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Inmueble inmueble = lista.get(position);
+        Contrato contrato = lista.get(position);
+        Inmueble inmueble = contrato.getPropiedad();
 
         Glide.with(context)
-                .load(inmueble.getImagen())
+                .load("http://192.168.0.17:5000/" + inmueble.getFoto())
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.ivInmuebleR_2);
 
@@ -53,7 +63,7 @@ public class ContratoAdapter extends RecyclerView.Adapter<ContratoAdapter.ViewHo
             @Override
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("inmueble2", inmueble);
+                bundle.putSerializable("contrato", contrato);
                 Navigation.findNavController(view).navigate(R.id.contratoDetalleFragment, bundle);
             }
         });

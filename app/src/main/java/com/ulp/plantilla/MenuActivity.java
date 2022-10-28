@@ -1,8 +1,5 @@
 package com.ulp.plantilla;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +7,8 @@ import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -22,7 +21,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.ulp.plantilla.databinding.ActivityMenuBinding;
 import com.ulp.plantilla.modelo.Propietario;
-import com.ulp.plantilla.request.ApiClient;
+import com.ulp.plantilla.request.ApiRetrofit;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -69,7 +72,6 @@ public class MenuActivity extends AppCompatActivity {
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_menu);
-        Log.d("Salida", "Ejecucion");
 
         NavigationView navigationView = binding.navView;
         iniciarHeader(navigationView);
@@ -79,16 +81,33 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     private void iniciarHeader(NavigationView nv) {
-        ApiClient ap = ApiClient.getApi();
-
         View header = nv.getHeaderView(0);
         ImageView ivUser = header.findViewById(R.id.ivUser);
         TextView tvUser = header.findViewById(R.id.tvUser);
         TextView tvMailUser = header.findViewById(R.id.tvMailUser);
 
-        Propietario p = ap.obtenerUsuarioActual();
-        ivUser.setImageResource(p.getAvatar());
-        tvUser.setText(p.getNombre() + " " + p.getApellido());
-        tvMailUser.setText(p.getEmail());
+        String token = ApiRetrofit.obtenerToken(getApplicationContext());
+
+        Call<Propietario> propietarioPromesa = ApiRetrofit.getServiceInmobiliaria().obtenerPerfil(token);
+        propietarioPromesa.enqueue(new Callback<Propietario>() {
+            @Override
+            public void onResponse(Call<Propietario> call, Response<Propietario> response) {
+                if(response.isSuccessful()) {
+                    Propietario p = response.body();
+
+                    Glide.with(getApplicationContext())
+                            .load("http://192.168.0.17:5000/" + p.getFoto())
+                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                            .into(ivUser);
+                    tvUser.setText(p.getNombre() + " " + p.getApellido());
+                    tvMailUser.setText(p.getEmail());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Propietario> call, Throwable t) {
+                Log.d("salida", t.getMessage());
+            }
+        });
     }
 }

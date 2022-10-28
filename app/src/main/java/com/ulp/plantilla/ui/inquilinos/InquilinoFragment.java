@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import com.ulp.plantilla.R;
 import com.ulp.plantilla.databinding.FragmentInmuebleBinding;
 import com.ulp.plantilla.databinding.FragmentInquilinoBinding;
+import com.ulp.plantilla.modelo.Contrato;
 import com.ulp.plantilla.modelo.Inmueble;
 import com.ulp.plantilla.ui.inmuebles.InmuebleAdapter;
 
@@ -35,14 +36,14 @@ public class InquilinoFragment extends Fragment {
         ivm = new ViewModelProvider(this).get(InquilinoViewModel.class);
 
         inicializarVista(root);
-        ivm.getMutableList().observe(getViewLifecycleOwner(), new Observer<ArrayList<Inmueble>>() {
+        ivm.getMutableList().observe(getViewLifecycleOwner(), new Observer<ArrayList<Contrato>>() {
             @Override
-            public void onChanged(ArrayList<Inmueble> inmuebles) {
-                InquilinoAdapter ia = new InquilinoAdapter(getContext(), getLayoutInflater(), inmuebles);
+            public void onChanged(ArrayList<Contrato> contratos) {
+                InquilinoAdapter ia = new InquilinoAdapter(getContext(), getLayoutInflater(), contratos);
                 rv.setAdapter(ia);
             }
         });
-        ivm.obtenerLista();
+        ivm.obtenerListaContratos();
 
         return root;
     }

@@ -45,7 +45,7 @@ public class InmuebleAdapter extends RecyclerView.Adapter<InmuebleAdapter.ViewHo
         //holder.ivInmuebleR.setImageResource(img);
 
         Glide.with(context)
-                .load(inmueble.getImagen())
+                .load("http://192.168.0.17:5000/" + inmueble.getFoto())
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.ivInmuebleR);
 

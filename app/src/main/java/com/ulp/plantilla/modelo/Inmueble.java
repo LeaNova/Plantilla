@@ -1,35 +1,66 @@
 package com.ulp.plantilla.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Inmueble implements Serializable {
 
+    public enum EnUsos {
+        //UpperCase
+        Residencial,
+        Comercial
+    }
+
+    public enum EnTipos {
+        Casa,
+        Departamento,
+        Local,
+        Depósito,
+        Oficinas,
+        Individual
+    }
+
     private int idInmueble;
     private String direccion;
-    private String uso;
-    private String tipo;
-    private int ambientes;
+    private int uso;
+    private int tipo;
+    private int cantAmbientes;
+    private String coordenadas;
     private double precio;
-    private Propietario propietario;
-    //En falso significa que el innmueble no está disponible por alguna falla en el mismo.
-    private boolean estado=true;
-    private String imagen;
+    private boolean disponible;
+    private int propietarioId;
+    private String foto;
+    private Propietario duenio;
 
-    public Inmueble(int idInmueble, String direccion, String uso, String tipo, int ambientes, double precio, Propietario propietario, boolean estado, String imagen) {
+    public Inmueble() {
+    }
+
+    public Inmueble(int idInmueble,
+                    String direccion,
+                    int uso,
+                    int tipo,
+                    int cantAmbientes,
+                    String coordenadas,
+                    double precio,
+                    boolean disponible,
+                    int propietarioId,
+                    String foto,
+                    Propietario duenio) {
         this.idInmueble = idInmueble;
         this.direccion = direccion;
         this.uso = uso;
         this.tipo = tipo;
-        this.ambientes = ambientes;
+        this.cantAmbientes = cantAmbientes;
+        this.coordenadas = coordenadas;
         this.precio = precio;
-        this.propietario = propietario;
-        this.estado = estado;
-        this.imagen = imagen;
+        this.disponible = disponible;
+        this.propietarioId = propietarioId;
+        this.foto = foto;
+        this.duenio = duenio;
     }
-    public Inmueble() {
 
-    }
     public int getIdInmueble() {
         return idInmueble;
     }
@@ -46,28 +77,36 @@ public class Inmueble implements Serializable {
         this.direccion = direccion;
     }
 
-    public String getUso() {
+    public int getUso() {
         return uso;
     }
 
-    public void setUso(String uso) {
+    public void setUso(int uso) {
         this.uso = uso;
     }
 
-    public String getTipo() {
+    public int getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(int tipo) {
         this.tipo = tipo;
     }
 
-    public int getAmbientes() {
-        return ambientes;
+    public int getCantAmbientes() {
+        return cantAmbientes;
     }
 
-    public void setAmbientes(int ambientes) {
-        this.ambientes = ambientes;
+    public void setCantAmbientes(int cantAmbientes) {
+        this.cantAmbientes = cantAmbientes;
+    }
+
+    public String getCoordenadas() {
+        return coordenadas;
+    }
+
+    public void setCoordenadas(String coordenadas) {
+        this.coordenadas = coordenadas;
     }
 
     public double getPrecio() {
@@ -78,28 +117,52 @@ public class Inmueble implements Serializable {
         this.precio = precio;
     }
 
-    public Propietario getPropietario() {
-        return propietario;
+    public boolean isDisponible() {
+        return disponible;
     }
 
-    public void setPropietario(Propietario propietario) {
-        this.propietario = propietario;
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
     }
 
-    public boolean isEstado() {
-        return estado;
+    public int getPropietarioId() {
+        return propietarioId;
     }
 
-    public void setEstado(boolean estado) {
-        this.estado = estado;
+    public void setPropietarioId(int propietarioId) {
+        this.propietarioId = propietarioId;
     }
 
-    public String getImagen() {
-        return imagen;
+    public String getFoto() {
+        return foto;
     }
 
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+    public Propietario getDuenio() {
+        return duenio;
+    }
+
+    public void setDuenio(Propietario duenio) {
+        this.duenio = duenio;
+    }
+
+    public static ArrayList<String> getUsos() {
+        ArrayList<String> lista = new ArrayList<>();
+        for(EnUsos usos: EnUsos.values()) {
+            lista.add(usos.name());
+        }
+        return lista;
+    }
+
+    public static ArrayList<String> getTipos() {
+        ArrayList<String> lista = new ArrayList<>();
+        for(EnTipos tipos: EnTipos.values()) {
+            lista.add(tipos.name());
+        }
+        return lista;
     }
 
     @Override
@@ -114,4 +177,21 @@ public class Inmueble implements Serializable {
     public int hashCode() {
         return Objects.hash(idInmueble);
     }
+
+
+    /*
+    public String getFechaInicio() {
+        String dia="";
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+        try {
+            Date d = dateFormat.parse(desde);
+
+            dia = formato.format(d);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return dia;
+    }
+    */
 }

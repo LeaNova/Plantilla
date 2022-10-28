@@ -42,11 +42,11 @@ public class PagoAdapter extends RecyclerView.Adapter<PagoAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull PagoAdapter.ViewHolder holder, int position) {
         Pago pago = lista.get(position);
 
-        holder.tvPagoCodigo.setText(pago.getIdPago()+"");
-        holder.tvPagoNumero.setText(pago.getNumero()+"");
-        holder.tvPagoContrato.setText(pago.getContrato().getIdContrato()+"");
+        holder.tvPagoCodigo.setText(pago.getNumPago()+"");
+        holder.tvPagoFecha.setText(pago.getFechaPago());
         holder.tvPagoImporte.setText("$ " + pago.getImporte());
-        holder.tvPagoFecha.setText(pago.getFechaDePago());
+        holder.tvPagoContrato.setText(pago.getContrato().getIdContrato()+"");
+        holder.tvDetalle.setText(pago.getDetalle());
     }
 
     @Override
@@ -55,15 +55,15 @@ public class PagoAdapter extends RecyclerView.Adapter<PagoAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvPagoCodigo, tvPagoNumero, tvPagoContrato, tvPagoImporte, tvPagoFecha;
+        private TextView tvPagoCodigo, tvPagoFecha, tvPagoImporte, tvPagoContrato, tvDetalle;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvPagoCodigo = itemView.findViewById(R.id.tvPagoCodigo);
-            tvPagoNumero = itemView.findViewById(R.id.tvPagoNumero);
-            tvPagoContrato = itemView.findViewById(R.id.tvPagoContrato);
-            tvPagoImporte = itemView.findViewById(R.id.tvPagoImporte);
             tvPagoFecha = itemView.findViewById(R.id.tvPagoFecha);
+            tvPagoImporte = itemView.findViewById(R.id.tvPagoImporte);
+            tvPagoContrato = itemView.findViewById(R.id.tvPagoContrato);
+            tvDetalle = itemView.findViewById(R.id.tvDetalle);
         }
     }
 }

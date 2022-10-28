@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 
 import com.ulp.plantilla.R;
 import com.ulp.plantilla.databinding.FragmentContratoBinding;
+import com.ulp.plantilla.modelo.Contrato;
 import com.ulp.plantilla.modelo.Inmueble;
 import com.ulp.plantilla.ui.inmuebles.InmuebleAdapter;
 
@@ -35,16 +36,24 @@ public class ContratoFragment extends Fragment {
         cvm = new ViewModelProvider(this).get(ContratoViewModel.class);
 
         inicializarVista(root);
-        cvm.getMutableList().observe(getViewLifecycleOwner(), new Observer<ArrayList<Inmueble>>() {
+
+        cvm.getMutableContratos().observe(getViewLifecycleOwner(), new Observer<ArrayList<Contrato>>() {
             @Override
-            public void onChanged(ArrayList<Inmueble> inmuebles) {
-                ContratoAdapter ca = new ContratoAdapter(getContext(), getLayoutInflater(), inmuebles);
+            public void onChanged(ArrayList<Contrato> contratos) {
+                ContratoAdapter ca = new ContratoAdapter(getContext(), getLayoutInflater(), contratos);
                 rv.setAdapter(ca);
             }
         });
-        cvm.obtenerLista();
+
+        cvm.obtenerListaContratos();
 
         return root;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 
     public void inicializarVista(View view) {

@@ -9,11 +9,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.ulp.plantilla.modelo.Contrato;
-import com.ulp.plantilla.modelo.Inmueble;
-import com.ulp.plantilla.request.ApiClient;
 
 public class ContratoDetalleViewModel extends AndroidViewModel {
-    private ApiClient ap = ApiClient.getApi();
     private MutableLiveData<Contrato> mutableContrato;
 
     public ContratoDetalleViewModel(@NonNull Application application) {
@@ -28,8 +25,7 @@ public class ContratoDetalleViewModel extends AndroidViewModel {
     }
 
     public void obtenerContrato(Bundle bContrato) {
-        Inmueble i = (Inmueble) bContrato.getSerializable("inmueble2");
-        Contrato c = ap.obtenerContratoVigente(i);
+        Contrato c = (Contrato) bContrato.getSerializable("contrato");
         mutableContrato.setValue(c);
     }
 }

@@ -1,39 +1,83 @@
 package com.ulp.plantilla.modelo;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 public class Pago implements Serializable {
 
-    private int idPago;
-    private int numero;
+    private int numPago;
+    private String fechaPago;
+    //private LocalDate fechaPago;
+    private Double importe;
+    private int contratoId;
+    private String detalle;
     private Contrato contrato;
-    private double importe;
-    private String fechaDePago;
 
     public Pago() {}
-
-    public Pago(int idPago, int numero, Contrato contrato, double importe, String fechaDePago) {
-        this.idPago = idPago;
-        this.numero = numero;
-        this.contrato = contrato;
+    public Pago(int numPago, String fechaPago, Double importe, int contratoId, String detalle, Contrato contrato) {
+        this.numPago = numPago;
+        this.fechaPago = fechaPago;
         this.importe = importe;
-        this.fechaDePago = fechaDePago;
+        this.contratoId = contratoId;
+        this.detalle = detalle;
+        this.contrato = contrato;
+    }
+    /*
+    public Pago(int numPago, LocalDate fechaPago, Double importe, int contratoId, String detalle, Contrato contrato) {
+        this.numPago = numPago;
+        this.fechaPago = fechaPago;
+        this.importe = importe;
+        this.contratoId = contratoId;
+        this.detalle = detalle;
+        this.contrato = contrato;
+    }
+    */
+    public int getNumPago() {
+        return numPago;
     }
 
-    public int getIdPago() {
-        return idPago;
+    public void setNumPago(int numPago) {
+        this.numPago = numPago;
     }
 
-    public void setIdPago(int idPago) {
-        this.idPago = idPago;
+    public String getFechaPago() {
+        return fechaPago;
     }
 
-    public int getNumero() {
-        return numero;
+    public void setFechaPago(String fechaPago) {
+        this.fechaPago = fechaPago;
+    }
+    /*
+    public LocalDate getFechaPago() {
+        return fechaPago;
     }
 
-    public void setNumero(int numero) {
-        this.numero = numero;
+    public void setFechaPago(LocalDate fechaPago) {
+        this.fechaPago = fechaPago;
+    }
+    */
+    public Double getImporte() {
+        return importe;
+    }
+
+    public void setImporte(Double importe) {
+        this.importe = importe;
+    }
+
+    public int getContratoId() {
+        return contratoId;
+    }
+
+    public void setContratoId(int contratoId) {
+        this.contratoId = contratoId;
+    }
+
+    public String getDetalle() {
+        return detalle;
+    }
+
+    public void setDetalle(String detalle) {
+        this.detalle = detalle;
     }
 
     public Contrato getContrato() {
@@ -42,21 +86,5 @@ public class Pago implements Serializable {
 
     public void setContrato(Contrato contrato) {
         this.contrato = contrato;
-    }
-
-    public double getImporte() {
-        return importe;
-    }
-
-    public void setImporte(double importe) {
-        this.importe = importe;
-    }
-
-    public String getFechaDePago() {
-        return fechaDePago;
-    }
-
-    public void setFechaDePago(String fechaDePago) {
-        this.fechaDePago = fechaDePago;
     }
 }

@@ -5,24 +5,24 @@ import java.util.Objects;
 public class Propietario {
 
     private int id;
-    private Long dni;
     private String nombre;
     private String apellido;
-    private String email;
-    private String contraseña;
+    private String dni;
     private String telefono;
-    private int avatar;
+    private String email;
+    private String pass;
+    private String foto;
 
     public Propietario(){}
-    public Propietario(int id, Long dni, String nombre, String apellido, String email, String contraseña, String telefono, int avatar) {
+    public Propietario(int id, String nombre, String apellido, String dni, String telefono, String email, String pass, String foto) {
         this.id = id;
-        this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.email = email;
-        this.contraseña = contraseña;
+        this.dni = dni;
         this.telefono = telefono;
-        this.avatar=avatar;
+        this.email = email;
+        this.pass = pass;
+        this.foto = foto;
     }
 
     public int getId() {
@@ -31,14 +31,6 @@ public class Propietario {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Long getDni() {
-        return dni;
-    }
-
-    public void setDni(Long dni) {
-        this.dni = dni;
     }
 
     public String getNombre() {
@@ -57,20 +49,12 @@ public class Propietario {
         this.apellido = apellido;
     }
 
-    public String getEmail() {
-        return email;
+    public String getDni() {
+        return dni;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getContraseña() {
-        return contraseña;
-    }
-
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 
     public String getTelefono() {
@@ -81,12 +65,28 @@ public class Propietario {
         this.telefono = telefono;
     }
 
-    public int getAvatar() {
-        return avatar;
+    public String getEmail() {
+        return email;
     }
 
-    public void setAvatar(int avatar) {
-        this.avatar = avatar;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 
     @Override

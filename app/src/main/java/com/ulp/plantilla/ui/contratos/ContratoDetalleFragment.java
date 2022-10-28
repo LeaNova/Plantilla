@@ -34,10 +34,10 @@ public class ContratoDetalleFragment extends Fragment {
             public void onChanged(Contrato contrato) {
                 tvContratoCodigo.setText(contrato.getIdContrato()+"");
                 tvContratoFechaI.setText(contrato.getFechaInicio());
-                tvContratoFechaF.setText(contrato.getFechaFin());
-                tvContratoAlquiler.setText("$ " + contrato.getMontoAlquiler());
-                tvContratoInquilino.setText(contrato.getInquilino().getNombre() + ", " + contrato.getInquilino().getNombre());
-                tvContratoInmueble.setText(contrato.getInmueble().getDireccion());
+                tvContratoFechaF.setText(contrato.getFechaFinal());
+                tvContratoAlquiler.setText("$ " + contrato.getAlquilerMensual());
+                tvContratoInquilino.setText(contrato.getInquilino().getApellido() + ", " + contrato.getInquilino().getNombre());
+                tvContratoInmueble.setText(contrato.getPropiedad().getDireccion());
                 btPagos.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

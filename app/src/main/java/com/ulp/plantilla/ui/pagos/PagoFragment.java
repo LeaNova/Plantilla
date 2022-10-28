@@ -40,7 +40,7 @@ public class PagoFragment extends Fragment {
                 rv.setAdapter(pa);
             }
         });
-        pvm.obtenerLista(getArguments());
+        pvm.obtenerPagos(getArguments());
 
         return root;
     }
