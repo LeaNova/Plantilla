@@ -43,7 +43,6 @@ public class MarcarMapa implements OnMapReadyCallback {
 
                 String coordenadas = x + "," + y;
 
-                Log.d("Salida", coordenadas);
                 Toast.makeText(context, "Clickeado: " + coordenadas, Toast.LENGTH_SHORT).show();
 
                 SharedPreferences sharedP = context.getSharedPreferences("configuracion", 0);

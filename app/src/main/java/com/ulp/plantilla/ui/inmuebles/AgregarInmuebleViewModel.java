@@ -98,8 +98,6 @@ public class AgregarInmuebleViewModel extends AndroidViewModel {
             precio = Double.parseDouble(strPrecio);
         }
 
-        Log.d("salida", precio+"");
-
         String token = ApiRetrofit.obtenerToken(context);
         Call<Inmueble> inmueblePromesa = ApiRetrofit.getServiceInmobiliaria().agregarInmueble(direccion, uso, tipo, cantAmbientes, coordenadas, precio, strFoto, token);
         inmueblePromesa.enqueue(new Callback<Inmueble>() {

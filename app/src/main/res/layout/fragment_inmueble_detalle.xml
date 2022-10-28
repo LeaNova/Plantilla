@@ -60,11 +60,11 @@
         android:id="@+id/textAmbientes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
         android:text="Ambientes"
-        app:layout_constraintStart_toStartOf="@+id/ivDetalle_inmueble"
-        app:layout_constraintTop_toBottomOf="@+id/ivDetalle_inmueble" />
+        app:layout_constraintStart_toEndOf="@+id/tvCoordemadas"
+        app:layout_constraintTop_toBottomOf="@+id/tvCoordemadas" />
 
     <TextView
         android:id="@+id/tvAmbientes"
@@ -79,7 +79,7 @@
         android:id="@+id/textDireccion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="32dp"
         android:text="Direccion"
         app:layout_constraintStart_toStartOf="@+id/cbDisponible"
         app:layout_constraintTop_toBottomOf="@+id/cbDisponible" />
@@ -97,10 +97,10 @@
         android:id="@+id/textUso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="32dp"
         android:text="Uso"
-        app:layout_constraintStart_toStartOf="@+id/tvAmbientes"
-        app:layout_constraintTop_toBottomOf="@+id/tvAmbientes" />
+        app:layout_constraintStart_toStartOf="@+id/tvCoordemadas"
+        app:layout_constraintTop_toBottomOf="@+id/tvCoordemadas" />
 
     <TextView
         android:id="@+id/tvUso"
@@ -115,7 +115,7 @@
         android:id="@+id/textCoordenadas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="32dp"
         android:text="Coordenadas"
         app:layout_constraintStart_toStartOf="@+id/tvDireccion"
         app:layout_constraintTop_toBottomOf="@+id/tvDireccion" />
@@ -133,7 +133,7 @@
         android:id="@+id/textTipo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="32dp"
         android:text="Tipo"
         app:layout_constraintStart_toStartOf="@+id/tvUso"
         app:layout_constraintTop_toBottomOf="@+id/tvUso" />
@@ -151,10 +151,10 @@
         android:id="@+id/textPrecio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="32dp"
         android:text="Precio"
-        app:layout_constraintStart_toStartOf="@+id/tvCoordemadas"
-        app:layout_constraintTop_toBottomOf="@+id/tvCoordemadas" />
+        app:layout_constraintStart_toStartOf="@+id/tvAmbientes"
+        app:layout_constraintTop_toBottomOf="@+id/tvAmbientes" />
 
     <TextView
         android:id="@+id/tvPrecio_inmueble"
