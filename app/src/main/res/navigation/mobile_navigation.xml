@@ -15,7 +15,11 @@
         android:id="@+id/nav_perfil"
         android:name="com.ulp.plantilla.ui.perfil.PerfilFragment"
         android:label="@string/menu_perfil"
-        tools:layout="@layout/fragment_perfil" />
+        tools:layout="@layout/fragment_perfil" >
+        <action
+            android:id="@+id/action_nav_perfil_to_cambiarFragment"
+            app:destination="@id/cambiarFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_inmueble"
@@ -34,11 +38,7 @@
         android:id="@+id/inmuebleDetalleFragment"
         android:name="com.ulp.plantilla.ui.inmuebles.InmuebleDetalleFragment"
         android:label="Inmueble"
-        tools:layout="@layout/fragment_inmueble_detalle" >
-        <action
-            android:id="@+id/action_inmuebleDetalleFragment_to_agregarInmuebleFragment"
-            app:destination="@id/agregarInmuebleFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_inmueble_detalle" />
 
     <fragment
         android:id="@+id/nav_inquilino"
@@ -101,10 +101,19 @@
     <fragment
         android:id="@+id/coordenadasFragment"
         android:name="com.ulp.plantilla.ui.inmuebles.CoordenadasFragment"
-        android:label="fragment_coordenadas"
+        android:label="Buscar coordenadas"
         tools:layout="@layout/fragment_coordenadas" >
         <action
             android:id="@+id/action_coordenadasFragment_to_agregarInmuebleFragment"
             app:destination="@id/agregarInmuebleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cambiarFragment"
+        android:name="com.ulp.plantilla.ui.perfil.CambiarFragment"
+        android:label="Cambiar contraseña"
+        tools:layout="@layout/fragment_cambiar" >
+        <action
+            android:id="@+id/action_cambiarFragment_to_nav_perfil2"
+            app:destination="@id/nav_perfil" />
     </fragment>
 </navigation>

@@ -25,7 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     private LoginViewModel lvm;
     private EditText etUser, etPass;
     private Button btEntrar;
-    private TextView tvAccess;
+    private TextView tvOlvide, tvAccess;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,11 +58,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void inicializarAcitivity() {
-        etUser = findViewById(R.id.etUser);
-        etPass = findViewById(R.id.etPass);
+        this.etUser = findViewById(R.id.etUser);
+        this.etPass = findViewById(R.id.etPass);
 
-        btEntrar = findViewById(R.id.btEntrar);
-        btEntrar.setOnClickListener(new View.OnClickListener() {
+        this.btEntrar = findViewById(R.id.btEntrar);
+        this.btEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String user = etUser.getText().toString();
@@ -71,14 +71,27 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        tvAccess = findViewById(R.id.tvAccess);
+        this.tvOlvide = findViewById(R.id.tvOlvide);
+        this.tvOlvide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String email = etUser.getText().toString();
+                lvm.olvideContraseña(email);
+            }
+        });
+
+        this.tvAccess = findViewById(R.id.tvAccess);
     }
 
     private void pedirPermisos() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
                 && checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.INTERNET, Manifest.permission.CALL_PHONE}, 1000);
+            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                    Manifest.permission.INTERNET,
+                    Manifest.permission.CALL_PHONE,
+                    Manifest.permission.CAMERA}, 1000);
         }
     }
 }

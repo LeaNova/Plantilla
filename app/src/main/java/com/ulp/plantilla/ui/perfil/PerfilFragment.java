@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -24,7 +25,7 @@ public class PerfilFragment extends Fragment {
     private PerfilViewModel pvm;
     private ImageView ivUserD;
     private EditText etNombre, etApellido, etDNI, etMail, etTelefono;
-    private Button btBoton;
+    private Button btBoton, btCambiarPass;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentPerfilBinding.inflate(inflater, container, false);
@@ -75,16 +76,16 @@ public class PerfilFragment extends Fragment {
     }
 
     private void inicializarVista(View view) {
-        ivUserD = view.findViewById(R.id.ivUserD);
-        etNombre = view.findViewById(R.id.etNombre);
-        etApellido = view.findViewById(R.id.etApellido);
-        etDNI = view.findViewById(R.id.etDNI);
-        etMail = view.findViewById(R.id.etMail);
-        etTelefono = view.findViewById(R.id.etTelefono);
-        btBoton = view.findViewById(R.id.btBoton);
-        btBoton.setText("Editar");
+        this.ivUserD = view.findViewById(R.id.ivUserD);
+        this.etNombre = view.findViewById(R.id.etNombre);
+        this.etApellido = view.findViewById(R.id.etApellido);
+        this.etDNI = view.findViewById(R.id.etDNI);
+        this.etMail = view.findViewById(R.id.etMail);
+        this.etTelefono = view.findViewById(R.id.etTelefono);
 
-        btBoton.setOnClickListener(new View.OnClickListener() {
+        this.btBoton = view.findViewById(R.id.btBoton);
+        this.btBoton.setText("Editar");
+        this.btBoton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String boton = btBoton.getText().toString();
@@ -96,6 +97,14 @@ public class PerfilFragment extends Fragment {
                 String mail = etMail.getText().toString();
 
                 pvm.actualizar(boton, nombre, apellido, dni, telefono, mail);
+            }
+        });
+
+        this.btCambiarPass = view.findViewById(R.id.btCambiarPass);
+        this.btCambiarPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.cambiarFragment);
             }
         });
     }

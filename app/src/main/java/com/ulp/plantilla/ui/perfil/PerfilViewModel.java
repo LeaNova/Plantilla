@@ -88,6 +88,7 @@ public class PerfilViewModel extends AndroidViewModel {
                     if(response.isSuccessful()) {
                         mutableEdicion.setValue(false);
                         mutableAccion.setValue("Editar");
+                        Toast.makeText(context, "Informacion actualizada", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(context, "Error en actualizar perfil", Toast.LENGTH_SHORT).show();
                     }

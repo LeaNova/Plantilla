@@ -24,17 +24,10 @@ import retrofit2.Response;
 
 import static android.app.Activity.RESULT_OK;
 
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
 public class AgregarInmuebleViewModel extends AndroidViewModel {
     private Context context;
-    private MutableLiveData<Inmueble> mutableInmueble;
+    //private MutableLiveData<Inmueble> mutableInmueble;
+    private MutableLiveData<String> mutableOk;
     private MutableLiveData<String> mutableCoordenadas;
     private MutableLiveData<Bitmap> mutableFoto;
 
@@ -43,11 +36,20 @@ public class AgregarInmuebleViewModel extends AndroidViewModel {
         this.context = application.getApplicationContext();
     }
 
+    /*
     public LiveData<Inmueble> getMutableInmueble() {
         if(mutableInmueble == null) {
             mutableInmueble = new MutableLiveData<>();
         }
         return mutableInmueble;
+    }
+    */
+
+    public LiveData<String> getMutableOk() {
+        if(mutableOk == null) {
+            mutableOk = new MutableLiveData<>();
+        }
+        return mutableOk;
     }
 
     public LiveData<String> getMutableCoordenadas() {
@@ -64,12 +66,14 @@ public class AgregarInmuebleViewModel extends AndroidViewModel {
         return mutableFoto;
     }
 
+    /*
     public void obtenerInmueble(Bundle bInmueble) {
         if(bInmueble != null) {
             Inmueble i = (Inmueble) bInmueble.getSerializable("inmueble");
             mutableInmueble.setValue(i);
         }
     }
+    */
 
     public void setCoordenadas() {
         SharedPreferences sharedP = context.getSharedPreferences("configuracion", 0);
@@ -103,6 +107,7 @@ public class AgregarInmuebleViewModel extends AndroidViewModel {
             public void onResponse(Call<Inmueble> call, Response<Inmueble> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(context, "Inmueble agregado", Toast.LENGTH_SHORT).show();
+                    mutableOk.postValue("");
                 } else {
                     Toast.makeText(context, "Error en agregar inmueble", Toast.LENGTH_SHORT).show();
                 }
@@ -115,6 +120,7 @@ public class AgregarInmuebleViewModel extends AndroidViewModel {
         });
     }
 
+    /*
     public void actualizarInmueble(int id, String direccion, int uso, int tipo, String strAmbientes, String coordenadas, String strPrecio, String strfoto) {
         int cantAmbientes = 0;
         double precio = 0;
@@ -149,6 +155,7 @@ public class AgregarInmuebleViewModel extends AndroidViewModel {
             }
         });
     }
+    */
 
     public void requestCamera (int requestCode, int resultCode, @Nullable Intent data, int REQUEST_IMAGE_CAPTURE) {
         Log.d("salida", requestCode + "");

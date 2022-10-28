@@ -10,7 +10,7 @@
         android:id="@+id/etUser"
         android:layout_width="wrap_content"
         android:layout_height="52dp"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="200dp"
         android:ems="10"
         android:hint="Usuario"
         android:inputType="textPersonName"
@@ -66,14 +66,29 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/tvOlvide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="32dp"
+        android:text="¿Olvidaste tu contraseña?"
+        android:textAlignment="center"
+        android:textColor="#3F51B5"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btEntrar" />
+
+    <TextView
+        android:id="@+id/textInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:text="Agite su celular para \n llamar a la Inmobiliaria Hs"
         android:textAlignment="center"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btEntrar" />
+        app:layout_constraintTop_toBottomOf="@+id/tvOlvide" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

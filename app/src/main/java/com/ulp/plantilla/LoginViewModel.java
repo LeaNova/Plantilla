@@ -19,6 +19,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.ulp.plantilla.modelo.Propietario;
 import com.ulp.plantilla.modelo.Usuario;
 import com.ulp.plantilla.request.ApiRetrofit;
 
@@ -89,6 +90,29 @@ public class LoginViewModel extends AndroidViewModel {
                 Log.d("Salida", t.getMessage());
             }
         });
+    }
+
+    public void olvideContraseña(String email) {
+        if(!email.equals("")) {
+            Call<Propietario> olvidePromesa = ApiRetrofit.getServiceInmobiliaria().olvideContrasela(email);
+            olvidePromesa.enqueue(new Callback<Propietario>() {
+                @Override
+                public void onResponse(Call<Propietario> call, Response<Propietario> response) {
+                    if(response.isSuccessful()) {
+                        Toast.makeText(context, "Correo enviado a " + email, Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(context, "Usuario no encontrado", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Propietario> call, Throwable t) {
+                    Log.d("salida", t.getMessage());
+                }
+            });
+        } else {
+            Toast.makeText(context, "Ingrese correro", Toast.LENGTH_LONG).show();
+        }
     }
 
     public void shake() {

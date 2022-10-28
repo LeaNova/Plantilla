@@ -49,16 +49,16 @@ public class ApiRetrofit {
     }
 
     public interface ServiceInmobiliaria {
-        /*
-        @POST("Propietario/login")
-        Call<String> login(@Body Usuario user);
-        */
         @FormUrlEncoded
         @POST("Propietario/login")
         Call<String> login(
                 @Field("user") String user,
                 @Field("pass") String pass
         );
+
+        @FormUrlEncoded
+        @POST("Propietario/pass_change")
+        Call<Propietario> olvideContrasela(@Field("email") String email);
 
         @GET("Propietario")
         Call<Propietario> obtenerPerfil(@Header("Authorization") String token);
@@ -74,14 +74,17 @@ public class ApiRetrofit {
                 @Header("Authorization") String token
         );
 
-        @GET("Inmueble")
-        Call<ArrayList<Inmueble>> obtenerInmuebles(@Header("Authorization") String token);
-
-        @GET("Inmueble/{id}")
-        Call<Inmueble> obtenerInmueble(
-                @Path("id") int id,
+        @FormUrlEncoded
+        @POST("Propietario/actualizar/contraseña")
+        Call<Propietario> actualizarContraseña(
+                @Field("passOld") String passOld,
+                @Field("passNew") String passNew,
+                @Field("passNewR") String passNewR,
                 @Header("Authorization") String token
         );
+
+        @GET("Inmueble")
+        Call<ArrayList<Inmueble>> obtenerInmuebles(@Header("Authorization") String token);
 
         @FormUrlEncoded
         @POST("Inmueble/agregar")
@@ -96,6 +99,7 @@ public class ApiRetrofit {
                 @Header("Authorization") String token
         );
 
+        /*
         @FormUrlEncoded
         @POST("Inmueble/actualizar/informacion/{id}")
         Call<Inmueble> actualizarInformacion(
@@ -109,6 +113,7 @@ public class ApiRetrofit {
                 @Field("foto") String foto,
                 @Header("Authorization") String token
         );
+        */
 
         @POST("Inmueble/actualizar/estado/{id}")
         Call<Inmueble> actualizarEstado(

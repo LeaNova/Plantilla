@@ -64,9 +64,12 @@ public class AgregarInmuebleFragment extends Fragment {
 
                 String encoded = Base64.getEncoder().encodeToString(b);
                 strFoto = encoded;
+
+                btGuardarInmueble.setEnabled(true);
             }
         });
 
+        /*
         aivm.getMutableInmueble().observe(getViewLifecycleOwner(), new Observer<Inmueble>() {
             @Override
             public void onChanged(Inmueble inmueble) {
@@ -99,7 +102,7 @@ public class AgregarInmuebleFragment extends Fragment {
                     }
                 });
             }
-        });
+        });*/
 
         aivm.getMutableCoordenadas().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
@@ -108,7 +111,13 @@ public class AgregarInmuebleFragment extends Fragment {
             }
         });
 
-        aivm.obtenerInmueble(getArguments());
+        aivm.getMutableOk().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                Navigation.findNavController(root).popBackStack();
+            }
+        });
+        //aivm.obtenerInmueble(getArguments());
 
         inicializarVista(root);
 
@@ -119,6 +128,12 @@ public class AgregarInmuebleFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        aivm.setCoordenadas();
     }
 
     private void inicializarVista(View view) {
@@ -133,7 +148,6 @@ public class AgregarInmuebleFragment extends Fragment {
         this.spTiposA.setAdapter(spinnerTipos);
 
         this.textAgregar = view.findViewById(R.id.textAgregar);
-        this.textAgregar.setText("Agregar Inmueble");
         this.etDireccionA = view.findViewById(R.id.etDireccionA);
         this.etCoordenadasA = view.findViewById(R.id.etCoordenadasA);
         this.etCantAmbientesA = view.findViewById(R.id.etCantAmbientesA);
@@ -160,7 +174,7 @@ public class AgregarInmuebleFragment extends Fragment {
         });
 
         this.btGuardarInmueble = view.findViewById(R.id.btGuardarInmueble);
-        this.btGuardarInmueble.setText("Agregar");
+        this.btGuardarInmueble.setEnabled(false);
         this.btGuardarInmueble.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

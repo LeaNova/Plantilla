@@ -27,10 +27,9 @@ import com.ulp.plantilla.modelo.Inmueble;
 
 public class InmuebleDetalleFragment extends Fragment {
     private InmuebleDetalleViewModel mViewModel;
-    private TextView tvCod_inmueble, tvAmbientes, tvDireccion, tvPrecio_inmueble, tvUso, tvTipo;
+    private TextView tvCod_inmueble, tvAmbientes, tvDireccion, tvPrecio_inmueble, tvUso, tvTipo, tvCoordenadas;
     private CheckBox cbDisponible;
     private ImageView ivDetalle_inmueble;
-    private Button btEditarInmuebleD;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -45,7 +44,8 @@ public class InmuebleDetalleFragment extends Fragment {
                 tvAmbientes.setText(inmueble.getCantAmbientes()+"");
                 tvDireccion.setText(inmueble.getDireccion());
                 tvPrecio_inmueble.setText("$ " + inmueble.getPrecio());
-                //jiji
+                tvCoordenadas.setText(inmueble.getCoordenadas());
+
                 int uso = inmueble.getUso() -1;
                 tvUso.setText(Inmueble.EnUsos.values()[uso].toString());
                 cbDisponible.setChecked(inmueble.isDisponible());
@@ -55,21 +55,13 @@ public class InmuebleDetalleFragment extends Fragment {
                         mViewModel.actualizarEstado(inmueble.getIdInmueble());
                     }
                 });
+
                 int tipo = inmueble.getTipo() -1;
                 tvTipo.setText(Inmueble.EnTipos.values()[tipo].toString());
                 Glide.with(getContext())
                         .load("http://192.168.0.17:5000/" + inmueble.getFoto())
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .into(ivDetalle_inmueble);
-                btEditarInmuebleD.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Bundle bundle = new Bundle();
-                        bundle.putSerializable("inmueble", inmueble);
-                        //Navigation.findNavController(view).navigate(R.id.editarInmuebleFragment, bundle);
-                        Navigation.findNavController(view).navigate(R.id.agregarInmuebleFragment, bundle);
-                    }
-                });
             }
         });
         mViewModel.obtenerInmueble(getArguments());
@@ -80,14 +72,14 @@ public class InmuebleDetalleFragment extends Fragment {
     }
 
     private void inicializarVista(View view) {
-        tvCod_inmueble = view.findViewById(R.id.tvCod_inmueble);
-        tvAmbientes = view.findViewById(R.id.tvAmbientes);
-        tvDireccion = view.findViewById(R.id.tvDireccion);
-        tvPrecio_inmueble = view.findViewById(R.id.tvPrecio_inmueble);
-        tvUso = view.findViewById(R.id.tvUso);
-        cbDisponible = view.findViewById(R.id.cbDisponible);
-        tvTipo = view.findViewById(R.id.tvTipo);
-        ivDetalle_inmueble = view.findViewById(R.id.ivDetalle_inmueble);
-        btEditarInmuebleD = view.findViewById(R.id.btEditarInmuebleD);
+        this.tvCod_inmueble = view.findViewById(R.id.tvCod_inmueble);
+        this.cbDisponible = view.findViewById(R.id.cbDisponible);
+        this.tvAmbientes = view.findViewById(R.id.tvAmbientes);
+        this.tvDireccion = view.findViewById(R.id.tvDireccion);
+        this.tvUso = view.findViewById(R.id.tvUso);
+        this.tvTipo = view.findViewById(R.id.tvTipo);
+        this.tvCoordenadas = view.findViewById(R.id.tvCoordemadas);
+        this.tvPrecio_inmueble = view.findViewById(R.id.tvPrecio_inmueble);
+        this.ivDetalle_inmueble = view.findViewById(R.id.ivDetalle_inmueble);
     }
 }
