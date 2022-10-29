@@ -94,7 +94,7 @@ public class LoginViewModel extends AndroidViewModel {
 
     public void olvideContraseña(String email) {
         if(!email.equals("")) {
-            Call<Propietario> olvidePromesa = ApiRetrofit.getServiceInmobiliaria().olvideContrasela(email);
+            Call<Propietario> olvidePromesa = ApiRetrofit.getServiceInmobiliaria().olvideContraseña(email);
             olvidePromesa.enqueue(new Callback<Propietario>() {
                 @Override
                 public void onResponse(Call<Propietario> call, Response<Propietario> response) {

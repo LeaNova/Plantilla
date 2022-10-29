@@ -58,7 +58,7 @@ public class ApiRetrofit {
 
         @FormUrlEncoded
         @POST("Propietario/pass_change")
-        Call<Propietario> olvideContrasela(@Field("email") String email);
+        Call<Propietario> olvideContraseña(@Field("email") String email);
 
         @GET("Propietario")
         Call<Propietario> obtenerPerfil(@Header("Authorization") String token);
