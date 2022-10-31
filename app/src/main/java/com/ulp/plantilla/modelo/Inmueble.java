@@ -8,7 +8,6 @@ import java.util.Objects;
 public class Inmueble implements Serializable {
 
     public enum EnUsos {
-        //UpperCase
         Residencial,
         Comercial
     }

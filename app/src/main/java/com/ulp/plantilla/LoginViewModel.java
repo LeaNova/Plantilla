@@ -37,8 +37,6 @@ public class LoginViewModel extends AndroidViewModel {
     private SensorManager sm;
     private LeerSensor leerSensor;
 
-    private File archivo;
-
     public LoginViewModel(@NonNull Application application) {
         super(application);
         this.context = application.getApplicationContext();
@@ -49,14 +47,6 @@ public class LoginViewModel extends AndroidViewModel {
             mutableAccess = new MutableLiveData<>();
         }
         return mutableAccess;
-    }
-
-    public File getArchivo() {
-        if(archivo == null) {
-            File directorio = context.getFilesDir();
-            archivo = new File(directorio, "configuracion");
-        }
-        return archivo;
     }
 
     public void iniciarSesion(String user, String pass) {

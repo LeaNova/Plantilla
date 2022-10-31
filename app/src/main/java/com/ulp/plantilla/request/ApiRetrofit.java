@@ -48,6 +48,10 @@ public class ApiRetrofit {
         return token;
     }
 
+    public static String obtenerIP() {
+        return PATH;
+    }
+
     public interface ServiceInmobiliaria {
         @FormUrlEncoded
         @POST("Propietario/login")
@@ -98,22 +102,6 @@ public class ApiRetrofit {
                 @Field("foto") String foto,
                 @Header("Authorization") String token
         );
-
-        /*
-        @FormUrlEncoded
-        @POST("Inmueble/actualizar/informacion/{id}")
-        Call<Inmueble> actualizarInformacion(
-                @Path("id") int id,
-                @Field("direccion") String direccion,
-                @Field("uso") int uso,
-                @Field("tipo") int tipo,
-                @Field("cantAmbientes") int cantAmbientes,
-                @Field("coordenadas") String coordenadas,
-                @Field("precio") double precio,
-                @Field("foto") String foto,
-                @Header("Authorization") String token
-        );
-        */
 
         @POST("Inmueble/actualizar/estado/{id}")
         Call<Inmueble> actualizarEstado(

@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.ulp.plantilla.R;
 import com.ulp.plantilla.modelo.Inmueble;
+import com.ulp.plantilla.request.ApiRetrofit;
 
 import java.util.List;
 
@@ -41,11 +42,9 @@ public class InmuebleAdapter extends RecyclerView.Adapter<InmuebleAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Inmueble inmueble = lista.get(position);
-        //int img = Integer.parseInt(inmueble.getImagen());
-        //holder.ivInmuebleR.setImageResource(img);
 
         Glide.with(context)
-                .load("http://192.168.0.17:5000/" + inmueble.getFoto())
+                .load(ApiRetrofit.obtenerIP() + inmueble.getFoto())
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.ivInmuebleR);
 

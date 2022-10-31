@@ -68,6 +68,14 @@ public class LeerMapa implements OnMapReadyCallback {
                             .build();
                     CameraUpdate camUp= CameraUpdateFactory.newCameraPosition(camUbicacion);
                     map.animateCamera(camUp);
+                } else {
+                    CameraPosition camUbicacion= new CameraPosition.Builder()
+                            .target(INMOBILIARIA)
+                            .zoom(17)
+                            .bearing(0)
+                            .build();
+                    CameraUpdate camUp= CameraUpdateFactory.newCameraPosition(camUbicacion);
+                    map.animateCamera(camUp);
                 }
             }
         });

@@ -69,41 +69,6 @@ public class AgregarInmuebleFragment extends Fragment {
             }
         });
 
-        /*
-        aivm.getMutableInmueble().observe(getViewLifecycleOwner(), new Observer<Inmueble>() {
-            @Override
-            public void onChanged(Inmueble inmueble) {
-                textAgregar.setText("Actualizar Inmueble");
-                etDireccionA.setText(inmueble.getDireccion());
-
-                etCoordenadasA.setText(inmueble.getCoordenadas());
-                etCantAmbientesA.setText(inmueble.getCantAmbientes()+"");
-                etPrecioA.setText(inmueble.getPrecio()+"");
-
-                Glide.with(getContext())
-                        .load("http://192.168.0.17:5000/" + inmueble.getFoto())
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)
-                        .into(ivFotoA);
-
-                btGuardarInmueble.setText("Actualizar");
-                btGuardarInmueble.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        int id = inmueble.getIdInmueble();
-                        String direccion = etDireccionA.getText().toString();
-                        int uso = spUsosA.getSelectedItemPosition() +1;
-                        int tipo = spTiposA.getSelectedItemPosition() +1;
-                        String srtAmbientes = etCantAmbientesA.getText().toString();
-                        String coordenadas = etCoordenadasA.getText().toString();
-                        String srtPrecio = etPrecioA.getText().toString();
-
-                        aivm.actualizarInmueble(id, direccion, uso, tipo, srtAmbientes, coordenadas, srtPrecio, strFoto);
-                        Navigation.findNavController(view).popBackStack();
-                    }
-                });
-            }
-        });*/
-
         aivm.getMutableCoordenadas().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
@@ -114,10 +79,14 @@ public class AgregarInmuebleFragment extends Fragment {
         aivm.getMutableOk().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
-                Navigation.findNavController(root).popBackStack();
+                etDireccionA.setText(s);
+                etCoordenadasA.setText(s);
+                etCantAmbientesA.setText(s);
+                etPrecioA.setText(s);
+                ivFotoA.setImageResource(R.drawable.default_img);
+                btGuardarInmueble.setEnabled(false);
             }
         });
-        //aivm.obtenerInmueble(getArguments());
 
         inicializarVista(root);
 
@@ -186,7 +155,7 @@ public class AgregarInmuebleFragment extends Fragment {
                 String srtPrecio = etPrecioA.getText().toString();
 
                 aivm.agregarInmueble(direccion, uso, tipo, srtAmbientes, coordenadas, srtPrecio, strFoto);
-                Navigation.findNavController(view).popBackStack();
+                aivm.setToEmpty();
             }
         });
     }

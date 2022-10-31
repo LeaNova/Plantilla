@@ -19,6 +19,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.ulp.plantilla.R;
 import com.ulp.plantilla.databinding.FragmentPerfilBinding;
 import com.ulp.plantilla.modelo.Propietario;
+import com.ulp.plantilla.request.ApiRetrofit;
 
 public class PerfilFragment extends Fragment {
     private FragmentPerfilBinding binding;
@@ -44,7 +45,7 @@ public class PerfilFragment extends Fragment {
                 etTelefono.setText(p.getTelefono());
 
                 Glide.with(getContext())
-                        .load("http://192.168.0.17:5000/" + p.getFoto())
+                        .load(ApiRetrofit.obtenerIP() + p.getFoto())
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .into(ivUserD);
             }

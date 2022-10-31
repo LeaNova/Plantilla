@@ -7,7 +7,6 @@ public class Pago implements Serializable {
 
     private int numPago;
     private String fechaPago;
-    //private LocalDate fechaPago;
     private Double importe;
     private int contratoId;
     private String detalle;
@@ -22,16 +21,6 @@ public class Pago implements Serializable {
         this.detalle = detalle;
         this.contrato = contrato;
     }
-    /*
-    public Pago(int numPago, LocalDate fechaPago, Double importe, int contratoId, String detalle, Contrato contrato) {
-        this.numPago = numPago;
-        this.fechaPago = fechaPago;
-        this.importe = importe;
-        this.contratoId = contratoId;
-        this.detalle = detalle;
-        this.contrato = contrato;
-    }
-    */
     public int getNumPago() {
         return numPago;
     }
@@ -47,15 +36,7 @@ public class Pago implements Serializable {
     public void setFechaPago(String fechaPago) {
         this.fechaPago = fechaPago;
     }
-    /*
-    public LocalDate getFechaPago() {
-        return fechaPago;
-    }
 
-    public void setFechaPago(LocalDate fechaPago) {
-        this.fechaPago = fechaPago;
-    }
-    */
     public Double getImporte() {
         return importe;
     }

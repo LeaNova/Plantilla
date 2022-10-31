@@ -24,6 +24,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.ulp.plantilla.R;
 import com.ulp.plantilla.modelo.Inmueble;
+import com.ulp.plantilla.request.ApiRetrofit;
 
 public class InmuebleDetalleFragment extends Fragment {
     private InmuebleDetalleViewModel mViewModel;
@@ -59,7 +60,7 @@ public class InmuebleDetalleFragment extends Fragment {
                 int tipo = inmueble.getTipo() -1;
                 tvTipo.setText(Inmueble.EnTipos.values()[tipo].toString());
                 Glide.with(getContext())
-                        .load("http://192.168.0.17:5000/" + inmueble.getFoto())
+                        .load(ApiRetrofit.obtenerIP() + inmueble.getFoto())
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .into(ivDetalle_inmueble);
             }

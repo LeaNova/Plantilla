@@ -44,8 +44,6 @@ public class InquilinoViewModel extends AndroidViewModel {
                 if(response.isSuccessful()) {
                     ArrayList<Contrato> lista = response.body();
                     mutableLista.postValue(lista);
-                    //obtenerInmuebles(lista);
-                    //listaContratos = response.body();
                 } else {
                     Log.d("Salida", "Sin respuesta");
                 }

@@ -26,15 +26,6 @@ public class CoordenadasFragment extends Fragment {
         binding = FragmentCoordenadasBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        aivm = new ViewModelProvider(this).get(AgregarInmuebleViewModel.class);
-
-        aivm.getMutableCoordenadas().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-
-            }
-        });
-
         inicializarActivity(root);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
@@ -55,7 +46,6 @@ public class CoordenadasFragment extends Fragment {
         this.btAgregarC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                aivm.setCoordenadas();
                 Navigation.findNavController(view).popBackStack();
             }
         });

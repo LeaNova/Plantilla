@@ -66,19 +66,10 @@ public class AgregarInmuebleViewModel extends AndroidViewModel {
         return mutableFoto;
     }
 
-    /*
-    public void obtenerInmueble(Bundle bInmueble) {
-        if(bInmueble != null) {
-            Inmueble i = (Inmueble) bInmueble.getSerializable("inmueble");
-            mutableInmueble.setValue(i);
-        }
-    }
-    */
-
     public void setCoordenadas() {
         SharedPreferences sharedP = context.getSharedPreferences("configuracion", 0);
         String coordenadas = sharedP.getString("coorde", "");
-        Log.d("salida", coordenadas);
+
         if(coordenadas != null) {
             mutableCoordenadas.setValue(coordenadas);
         }
@@ -105,7 +96,6 @@ public class AgregarInmuebleViewModel extends AndroidViewModel {
             public void onResponse(Call<Inmueble> call, Response<Inmueble> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(context, "Inmueble agregado", Toast.LENGTH_SHORT).show();
-                    mutableOk.postValue("");
                 } else {
                     Toast.makeText(context, "Error en agregar inmueble", Toast.LENGTH_SHORT).show();
                 }
@@ -118,42 +108,9 @@ public class AgregarInmuebleViewModel extends AndroidViewModel {
         });
     }
 
-    /*
-    public void actualizarInmueble(int id, String direccion, int uso, int tipo, String strAmbientes, String coordenadas, String strPrecio, String strfoto) {
-        int cantAmbientes = 0;
-        double precio = 0;
-
-        if(!strAmbientes.equals("")) {
-            cantAmbientes = Integer.parseInt(strAmbientes);
-        }
-
-        if(!strPrecio.equals("")) {
-            precio = Double.parseDouble(strPrecio);
-        } else if (strPrecio.contains(".")) {
-            precio = Double.parseDouble(strPrecio);
-        }
-
-        Log.d("salida", precio+"");
-
-        String token = ApiRetrofit.obtenerToken(context);
-        Call<Inmueble> actualizarPromesa = ApiRetrofit.getServiceInmobiliaria().actualizarInformacion(id, direccion, uso, tipo, cantAmbientes, coordenadas, precio, strfoto, token);
-        actualizarPromesa.enqueue(new Callback<Inmueble>() {
-            @Override
-            public void onResponse(Call<Inmueble> call, Response<Inmueble> response) {
-                if (response.isSuccessful()) {
-                    Toast.makeText(context, "Inmueble actualizado", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(context, "Error en actualizar inmueble", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Inmueble> call, Throwable t) {
-                Log.d("Salida", t.getMessage());
-            }
-        });
+    public void setToEmpty() {
+        mutableOk.postValue("");
     }
-    */
 
     public void requestCamera (int requestCode, int resultCode, @Nullable Intent data, int REQUEST_IMAGE_CAPTURE) {
         Log.d("salida", requestCode + "");
